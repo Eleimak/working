@@ -21,6 +21,13 @@ public class PersonController {
         return personService.getAll();
     }
 
+    @RequestMapping("/get/list/{from}/{amount}")
+    List<Person> showPage(@PathVariable("from")int from,
+                          @PathVariable("amount")int amount){
+        return personService.getAll().subList(from-1, amount);
+        //return personService.getPage(from, amount);
+    }
+
     @RequestMapping("/get/{id}")
     Person getId(@PathVariable("id")int id){
         return personService.get(id);
@@ -45,8 +52,13 @@ public class PersonController {
     }
 
     @PostMapping("/delete/list")
-    List<Person> deleteList(@Valid @RequestBody List<Integer> integerList){
-        return null;
+    int deleteList(@Valid @RequestBody List<Integer> integerList){
+//        for (Integer items :
+//                integerList) {
+//            this.delete(items);
+//        }
+//        return 0;
+        return this.personService.deleteAll(integerList);
     }
 
 }

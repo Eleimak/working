@@ -17,7 +17,12 @@ public class PersonService {
                     new Person(2,"Freddy Mercury", LocalDate.now().minusYears(60),true),
                     new Person(3,"Curt Cobain", LocalDate.now().minusYears(65),true),
                     new Person(4,"Till  Lindemann", LocalDate.now().minusYears(67),true),
-                    new Person(5,"Tarja Turunen", LocalDate.now().minusYears(55),false)
+                    new Person(5,"Paul  McCartney", LocalDate.now().minusYears(77),true),
+                    new Person(6,"Mik  Jagger", LocalDate.now().minusYears(79),true),
+                    new Person(7,"Ringo Star", LocalDate.now().minusYears(90),true),
+                    new Person(8,"Brain May", LocalDate.now().minusYears(78),true),
+                    new Person(9,"Cris Norman", LocalDate.now().minusYears(67),true),
+                    new Person(10,"Tarja Turunen", LocalDate.now().minusYears(55),false)
             )
     );
 
@@ -39,5 +44,24 @@ public class PersonService {
 
     public List<Person> getAll(){
         return this.people;
+    }
+
+    public Integer deleteAll(List<Integer> list) {
+        int count = 0;
+        for (Integer items : list) {
+            this.delete(items);
+        }
+        list.stream().forEach(id ->{
+            Person person = this.get(id);
+            if(person != null){
+                people.remove(person);
+            }
+        });
+        return count;
+    }
+
+    public List<Person> getPage(int from, int amount) {
+
+        return null;
     }
 }
