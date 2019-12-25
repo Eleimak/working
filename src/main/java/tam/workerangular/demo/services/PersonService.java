@@ -22,7 +22,12 @@ public class PersonService {
                     new Person(7,"Ringo Star", LocalDate.now().minusYears(90),true),
                     new Person(8,"Brain May", LocalDate.now().minusYears(78),true),
                     new Person(9,"Cris Norman", LocalDate.now().minusYears(67),true),
-                    new Person(10,"Tarja Turunen", LocalDate.now().minusYears(55),false)
+                    new Person(10,"Eric Clapton", LocalDate.now().minusYears(77),true),
+                    new Person(11,"Mark Knopfel", LocalDate.now().minusYears(79),true),
+                    new Person(12,"Richi Blackmore", LocalDate.now().minusYears(90),true),
+                    new Person(13,"Jim Morison", LocalDate.now().minusYears(78),true),
+                    new Person(14,"Bob Marley", LocalDate.now().minusYears(67),true),
+                    new Person(15,"Tarja Turunen", LocalDate.now().minusYears(55),false)
             )
     );
 
@@ -61,7 +66,9 @@ public class PersonService {
     }
 
     public List<Person> getPage(int from, int amount) {
-
-        return null;
+        if(amount > people.size()){
+            amount = people.size();
+        }
+        return people.subList(from -1 , amount);
     }
 }

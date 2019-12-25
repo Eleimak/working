@@ -24,8 +24,7 @@ public class PersonController {
     @RequestMapping("/get/list/{from}/{amount}")
     List<Person> showPage(@PathVariable("from")int from,
                           @PathVariable("amount")int amount){
-        return personService.getAll().subList(from-1, amount);
-        //return personService.getPage(from, amount);
+        return personService.getPage(from, amount);
     }
 
     @RequestMapping("/get/{id}")
