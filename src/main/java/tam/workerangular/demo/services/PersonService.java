@@ -32,8 +32,19 @@ public class PersonService {
     );
 
     public Person create(Person person){
-        person.setId(people.stream().mapToInt(Person::getId).boxed().max(Integer::compareTo).orElse(0) + 1);
-        people.add(person);
+        boolean add = true;
+        for (Person item : people) {
+            if(item.equals(person)){
+                item.setName(person.getName());
+                item.setDateOfBirth(person.getDateOfBirth());
+                item.setGender(person.isGender());
+                add = false;
+            }
+        }
+        if(add) {
+            person.setId(people.stream().mapToInt(Person::getId).boxed().max(Integer::compareTo).orElse(0) + 1);
+            people.add(person);
+        }
         return person;
     };
 
